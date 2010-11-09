@@ -15,11 +15,13 @@
  */
 package com.dylantaylor.simpledice;
 
+import java.io.IOException;
 import java.util.Random;
 
 import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -43,7 +45,7 @@ public class RollDice extends Activity {
 	private ImageView die2;
 	private LinearLayout diceContainer;
 	private Handler animationHandler;
-
+  
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class RollDice extends Activity {
        rollDice();
     }
  
-    private void rollDice() {
+    private void rollDice() {    	
     	new Thread(new Runnable() {
 
 			@Override
@@ -83,6 +85,15 @@ public class RollDice extends Activity {
 				}
 			}
 		}).start();   	
+    	MediaPlayer mp = MediaPlayer.create(this, R.raw.roll); 
+		try {
+			mp.prepare();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mp.start();
     }
     
     private void doRoll() { //only does a single roll
