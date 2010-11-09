@@ -7,7 +7,7 @@
     android:layout_height="fill_parent"
     android:padding="10dip">
     <ImageView
-    android:id="@+id/die1"
+    android:id="@+id/die1" 
     android:src="@drawable/d6"
     android:layout_width="150dip"
     android:layout_height="150dip"
